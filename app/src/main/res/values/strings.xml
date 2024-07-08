@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FinPortfolio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="save">Save</string>
+    <string name="default_currency">Default Currency</string>
+    <string-array name="currency_array">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>BLR</item>
+        <item>CNY</item>
+        <item>RUB</item>
+    </string-array>
 </resources>
