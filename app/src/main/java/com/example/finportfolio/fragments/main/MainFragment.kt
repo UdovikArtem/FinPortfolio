@@ -24,12 +24,15 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val actionPortfolio = MainFragmentDirections.actionMainFragmentToPortfolioFragment()
+        val actionAsset = MainFragmentDirections.actionMainFragmentToAssetFragment()
+
         binding.buttonFragmentPortfolio.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_portfolioFragment)
+            findNavController().navigate(actionPortfolio)
         }
 
         binding.buttonFragmentAsset.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_assetFragment)
+            findNavController().navigate(actionAsset)
         }
     }
 

@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.finportfolio.R
 import com.example.finportfolio.databinding.FragmentAssetBinding
+import com.example.finportfolio.entity.Asset
+import com.example.finportfolio.repository.AssetRepository
+import com.example.finportfolio.rv.AssetAdapter
 
 class AssetFragment : Fragment() {
     private var _binding: FragmentAssetBinding? = null
@@ -23,10 +24,9 @@ class AssetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFragmentMain.setOnClickListener {
-            findNavController().navigate(R.id.action_assetFragment_to_mainFragment)
-        }
+        val adapter = AssetAdapter({})
+        binding.recycler.adapter = adapter
+        adapter.submitItems(AssetRepository.getAssets())
     }
 
     override fun onDestroyView() {

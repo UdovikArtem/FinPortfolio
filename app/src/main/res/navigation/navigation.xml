@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.finportfolio.fragments.main.MainFragment"
-        android:label="fragment_main"
+        android:label="@string/financial_portfolio"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_portfolioFragment"
@@ -20,19 +20,11 @@
     <fragment
         android:id="@+id/portfolioFragment"
         android:name="com.example.finportfolio.fragments.portfolio.PortfolioFragment"
-        android:label="fragment_portfolio"
-        tools:layout="@layout/fragment_portfolio" >
-        <action
-            android:id="@+id/action_portfolioFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        android:label="@string/portfolio_page"
+        tools:layout="@layout/fragment_portfolio" />
     <fragment
         android:id="@+id/assetFragment"
         android:name="com.example.finportfolio.fragments.assets.AssetFragment"
-        android:label="fragment_asset"
-        tools:layout="@layout/fragment_asset" >
-        <action
-            android:id="@+id/action_assetFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        android:label="@string/assets_page"
+        tools:layout="@layout/fragment_asset" />
 </navigation>
