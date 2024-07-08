@@ -3,22 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/home_fragment"
-        android:name="com.example.finportfolio.presentation.home.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/mainFragment"
+        android:name="com.example.finportfolio.fragments.main.MainFragment"
+        android:label="@string/financial_portfolio"
+        tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settings_fragment" />
+            android:id="@+id/action_mainFragment_to_portfolioFragment"
+            app:destination="@id/portfolioFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_assetFragment"
+            app:destination="@id/assetFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
-
     <fragment
-        android:id="@+id/settings_fragment"
+        android:id="@+id/portfolioFragment"
+        android:name="com.example.finportfolio.fragments.portfolio.PortfolioFragment"
+        android:label="@string/portfolio_page"
+        tools:layout="@layout/fragment_portfolio" />
+    <fragment
+        android:id="@+id/assetFragment"
+        android:name="com.example.finportfolio.fragments.assets.AssetFragment"
+        android:label="@string/assets_page"
+        tools:layout="@layout/fragment_asset" />
+    <fragment
+        android:id="@+id/settingFragment"
         android:name="com.example.finportfolio.data.setting.SettingFragment"
-        android:label="Settings"
+        android:label="@string/settings"
         tools:layout="@layout/fragment_setting" />
-
 </navigation>
