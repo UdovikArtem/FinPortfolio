@@ -1,4 +1,4 @@
-package com.example.finportfolio
+package com.example.finportfolio.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

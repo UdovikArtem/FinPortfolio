@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.finportfolio.BaseFragment
-import com.example.finportfolio.R
 import com.example.finportfolio.databinding.FragmentMainBinding
+import com.example.finportfolio.fragments.BaseFragment
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
@@ -33,7 +31,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 findNavController().navigate(actionAsset)
             }
 
-            buttonSettings.setOnClickListener{
+            buttonSettings.setOnClickListener {
                 findNavController().navigate(actionSetting)
             }
         }

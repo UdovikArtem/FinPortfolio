@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.finportfolio.fragments.main.MainFragment"
         android:label="@string/financial_portfolio"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_portfolioFragment"
             app:destination="@id/portfolioFragment" />
@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_asset" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.finportfolio.data.setting.SettingFragment"
+        android:name="com.example.finportfolio.fragments.setting.SettingFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_setting" />
 </navigation>

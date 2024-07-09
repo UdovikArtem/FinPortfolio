@@ -1,4 +1,4 @@
-package com.example.finportfolio.data.setting
+package com.example.finportfolio.fragments.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import com.example.finportfolio.BaseFragment
 import com.example.finportfolio.R
+import com.example.finportfolio.data.setting.SettingStore
 import com.example.finportfolio.databinding.FragmentSettingBinding
+import com.example.finportfolio.fragments.BaseFragment
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
