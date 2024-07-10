@@ -1,6 +1,21 @@
 package com.example.finportfolio.entity
 
-data class Asset (
-    val id: Int,
-    val name: String,
+open class Asset(
+    open val id: Int,
+    open val name: String,
+    open val price: Double
 )
+
+class Cash(
+    override val id: Int,
+    override val name: String,
+    override val price: Double,
+    val currency: String
+) : Asset(id, name, price)
+
+data class Stock(
+    override val id: Int,
+    override val name: String,
+    override val price: Double,
+    val ticker: String
+) : Asset(id, name, price)

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.finportfolio.databinding.FragmentAssetBinding
-import com.example.finportfolio.entity.Asset
 import com.example.finportfolio.repository.AssetRepository
 import com.example.finportfolio.rv.AssetAdapter
 
@@ -15,7 +14,8 @@ class AssetFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAssetBinding.inflate(inflater, container, false)
