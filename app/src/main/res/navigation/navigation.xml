@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.finportfolio.fragments.main.MainFragment"
+        android:label="@string/financial_portfolio"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_portfolioFragment"
+            app:destination="@id/portfolioFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_assetFragment"
+            app:destination="@id/assetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/portfolioFragment"
+        android:name="com.example.finportfolio.fragments.portfolio.PortfolioFragment"
+        android:label="@string/portfolio_page"
+        tools:layout="@layout/fragment_portfolio" />
+    <fragment
+        android:id="@+id/assetFragment"
+        android:name="com.example.finportfolio.fragments.assets.AssetFragment"
+        android:label="@string/assets_page"
+        tools:layout="@layout/fragment_asset" />
+</navigation>
