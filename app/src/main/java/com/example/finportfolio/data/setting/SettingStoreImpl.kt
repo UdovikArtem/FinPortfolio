@@ -2,8 +2,12 @@ package com.example.finportfolio.data.setting
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.finportfolio.domain.repository.SettingStore
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class SettingStoreImpl(context: Context) : SettingStore {
+class SettingStoreImpl @Inject
+constructor(@ApplicationContext context: Context) : SettingStore {
     companion object {
         private const val PREFS_NAME = "portfolio_settings"
         private const val KEY_DEFAULT_CURRENCY = "default_currency"

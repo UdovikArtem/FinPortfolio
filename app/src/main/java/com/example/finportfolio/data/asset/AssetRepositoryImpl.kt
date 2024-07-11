@@ -1,10 +1,12 @@
-package com.example.finportfolio.repository
+package com.example.finportfolio.data.asset
 
-import com.example.finportfolio.entity.Asset
-import com.example.finportfolio.entity.Cash
-import com.example.finportfolio.entity.Stock
+import com.example.finportfolio.domain.entity.Asset
+import com.example.finportfolio.domain.entity.Cash
+import com.example.finportfolio.domain.entity.Stock
+import com.example.finportfolio.domain.repository.AssetRepository
+import javax.inject.Inject
 
-object AssetRepository {
+class AssetRepositoryImpl @Inject constructor() : AssetRepository {
     private val assets: HashMap<Int, Asset> = HashMap(
         listOf(
             Cash(
@@ -50,6 +52,6 @@ object AssetRepository {
         ).associateBy { it.id }
     )
 
-    fun getAssets(): List<Asset> = assets.values.toList()
-    fun getAssetById(id: Int): Asset? = assets[id]
+    override fun getAssets(): List<Asset> = assets.values.toList()
+    override fun getAssetById(id: Int): Asset? = assets[id]
 }

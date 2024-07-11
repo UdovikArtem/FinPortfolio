@@ -3,15 +3,20 @@ package com.example.finportfolio.fragments.assets
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.finportfolio.entity.Asset
-import com.example.finportfolio.repository.AssetRepository
+import com.example.finportfolio.domain.entity.Asset
+import com.example.finportfolio.domain.repository.AssetRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AssetViewModel : ViewModel() {
+@HiltViewModel
+class AssetViewModel @Inject constructor(
+    private val assetRepository: AssetRepository
+) : ViewModel() {
 
-    private val _model = MutableLiveData<List<Asset>>()
-    val model: LiveData<List<Asset>> = _model
+    private val _assetsModel = MutableLiveData<List<Asset>>()
+    val assetsModel: LiveData<List<Asset>> = _assetsModel
 
     init {
-        _model.value = AssetRepository.getAssets()
+        _assetsModel.value = assetRepository.getAssets()
     }
 }

@@ -1,7 +1,7 @@
 package com.example.finportfolio.rv
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.finportfolio.entity.Asset
+import com.example.finportfolio.domain.entity.Asset
 
 class AssetDiffCallback(
     private val oldList: List<Asset>,

@@ -1,21 +1,20 @@
 package com.example.finportfolio.di
 
-import android.content.Context
-import com.example.finportfolio.data.setting.SettingStore
+import com.example.finportfolio.data.asset.AssetRepositoryImpl
 import com.example.finportfolio.data.setting.SettingStoreImpl
+import com.example.finportfolio.domain.repository.AssetRepository
+import com.example.finportfolio.domain.repository.SettingStore
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
-    @Singleton
-    @Provides
-    fun provideSettingStore(@ApplicationContext context: Context): SettingStore {
-        return SettingStoreImpl(context)
-    }
+interface AppModule {
+    @Binds
+    fun bindSettingStore(settingStoreImpl: SettingStoreImpl): SettingStore
+
+    @Binds
+    fun bindAssetRepository(assetRepositoryImpl: AssetRepositoryImpl): AssetRepository
 }

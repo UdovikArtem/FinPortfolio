@@ -1,4 +1,4 @@
-package com.example.finportfolio.data.setting
+package com.example.finportfolio.domain.repository
 
 interface SettingStore {
     fun setDefaultCurrency(currency: String)

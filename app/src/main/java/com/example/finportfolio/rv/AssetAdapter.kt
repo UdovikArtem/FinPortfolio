@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finportfolio.databinding.ItemAssetBinding
-import com.example.finportfolio.entity.Asset
+import com.example.finportfolio.domain.entity.Asset
 
 class AssetAdapter(private val onClick: (Asset) -> Unit) : RecyclerView.Adapter<AssetViewHolder>() {
 

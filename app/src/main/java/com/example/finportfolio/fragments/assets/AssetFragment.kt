@@ -8,7 +8,9 @@ import androidx.fragment.app.viewModels
 import com.example.finportfolio.databinding.FragmentAssetBinding
 import com.example.finportfolio.fragments.BaseFragment
 import com.example.finportfolio.rv.AssetAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AssetFragment : BaseFragment<FragmentAssetBinding>() {
 
     private val viewModel by viewModels<AssetViewModel>()
@@ -22,7 +24,7 @@ class AssetFragment : BaseFragment<FragmentAssetBinding>() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = AssetAdapter({})
         binding.recycler.adapter = adapter
-        viewModel.model.observe(viewLifecycleOwner) { assets ->
+        viewModel.assetsModel.observe(viewLifecycleOwner) { assets ->
             adapter.submitItems(assets)
         }
     }

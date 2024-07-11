@@ -32,9 +32,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.apply {
             currencySpinner.adapter = adapter
-            val selected = viewModel.getDefaultCurrency()
-            val itemNumber = currency.indexOf(selected)
-            currencySpinner.setSelection(itemNumber)
+            viewModel.currencyModel.observe(viewLifecycleOwner) {
+                val itemNumber = currency.indexOf(it)
+                currencySpinner.setSelection(itemNumber)
+            }
             saveButton.setOnClickListener {
                 val selectedCurrency = binding.currencySpinner.selectedItem.toString()
                 viewModel.setDefaultCurrency(selectedCurrency)

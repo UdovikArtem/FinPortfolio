@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.finportfolio.databinding.FragmentPortfolioBinding
 import com.example.finportfolio.fragments.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
 
     override fun inflateViewBinding(
