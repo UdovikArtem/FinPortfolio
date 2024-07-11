@@ -10,5 +10,5 @@ class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
     override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentPortfolioBinding = FragmentPortfolioBinding.inflate(inflater, container, false)
+    ) = FragmentPortfolioBinding.inflate(inflater, container, false)
 }

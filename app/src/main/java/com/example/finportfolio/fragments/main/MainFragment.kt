@@ -13,7 +13,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentMainBinding = FragmentMainBinding.inflate(inflater, container, false)
+    ) = FragmentMainBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

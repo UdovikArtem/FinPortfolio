@@ -5,51 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
+import androidx.fragment.app.viewModels
 import com.example.finportfolio.R
-import com.example.finportfolio.data.setting.SettingStore
 import com.example.finportfolio.databinding.FragmentSettingBinding
 import com.example.finportfolio.fragments.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
-    private lateinit var settingStore: SettingStore
+    private val viewModel by viewModels<SettingViewModel>()
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentSettingBinding =
-        FragmentSettingBinding.inflate(inflater, container, false)
+    ) = FragmentSettingBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        settingStore = SettingStore(requireContext())
-
+        val currency = resources.getStringArray(R.array.currency_array)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            currency
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.apply {
-            val adapter = ArrayAdapter.createFromResource(
-                requireContext(),
-                R.array.currency_array,
-                android.R.layout.simple_spinner_item
-            )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             currencySpinner.adapter = adapter
-
-            val defaultCurrency = settingStore.getDefaultCurrency()
-            setSpinnerToValue(currencySpinner, defaultCurrency)
-
+            val selected = viewModel.getDefaultCurrency()
+            val itemNumber = currency.indexOf(selected)
+            currencySpinner.setSelection(itemNumber)
             saveButton.setOnClickListener {
                 val selectedCurrency = binding.currencySpinner.selectedItem.toString()
-                settingStore.setDefaultCurrency(selectedCurrency)
-            }
-        }
-    }
-
-    private fun setSpinnerToValue(spinner: Spinner, value: String) {
-        for (i in 0 until spinner.count) {
-            if (spinner.getItemAtPosition(i) == value) {
-                spinner.setSelection(i)
-                break
+                viewModel.setDefaultCurrency(selectedCurrency)
             }
         }
     }

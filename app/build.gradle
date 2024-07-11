@@ -8,7 +8,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.dagger.hilt.android'
 
 android {
     namespace 'com.example.finportfolio'
@@ -43,7 +48,8 @@ android {
 }
 
 dependencies {
-
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
