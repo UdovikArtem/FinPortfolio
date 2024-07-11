@@ -1,6 +1,7 @@
 buildscript {
     apply from: "../code_quality/detekt.gradle"
     apply from: "../code_style/ktlint.gradle"
+    apply from: '../scripts/git_hook.gradle'
 }
 
 plugins {
@@ -36,15 +37,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    buildFeatures {
-        viewBinding = true
+    viewBinding {
+        enabled = true
     }
-
-
 }
 
 dependencies {
+
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material

@@ -7,6 +7,7 @@
     <string name="assets_page">Asset page</string>
     <string name="portfolio_page">Portfolio page</string>
     <string name="financial_portfolio">Financial page</string>
+    <string name="my_portfolio">My portfolio</string>
     <string-array name="currency_array">
         <item>USD</item>
         <item>EUR</item>

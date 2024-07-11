@@ -1,34 +1,55 @@
 package com.example.finportfolio.repository
 
 import com.example.finportfolio.entity.Asset
+import com.example.finportfolio.entity.Cash
+import com.example.finportfolio.entity.Stock
 
 object AssetRepository {
     private val assets: HashMap<Int, Asset> = HashMap(
         listOf(
-            Asset(
+            Cash(
                 id = 1,
-                name = "BYN"
+                name = "Belarusian Ruble",
+                currency = "BYN"
             ),
-            Asset(
+            Cash(
                 id = 2,
-                name = "RUB"
+                name = "Russian Ruble",
+                currency = "RUB"
             ),
-            Asset(
+            Cash(
                 id = 3,
-                name = "USD"
+                name = "US Dollar",
+                currency = "USD"
             ),
-            Asset(
+            Cash(
                 id = 4,
-                name = "EUR"
+                name = "Euro",
+                currency = "EUR"
             ),
-            Asset(
+            Cash(
                 id = 5,
-                name = "CNY"
+                name = "Chinese Yuan",
+                currency = "CNY"
+            ),
+            Stock(
+                id = 6,
+                name = "Apple stock",
+                ticker = "AAPL"
+            ),
+            Stock(
+                id = 7,
+                name = "NVIDIA Corporation Stock",
+                ticker = "NVDA"
+            ),
+            Stock(
+                id = 8,
+                name = "Advanced Micro Devices, Inc. Stock",
+                ticker = "AMD"
             )
-        ).associateBy {
-            it.id
-        }
+        ).associateBy { it.id }
     )
+
     fun getAssets(): List<Asset> = assets.values.toList()
     fun getAssetById(id: Int): Asset? = assets[id]
 }
