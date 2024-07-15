@@ -8,11 +8,12 @@
     tools:context=".fragments.setting.SettingFragment">
 
     <LinearLayout
+        android:id="@+id/default_currency"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
         <TextView
             android:layout_width="0dp"
@@ -22,20 +23,19 @@
             android:textSize="20sp"
             tools:ignore="NestedWeights" />
 
-        <Spinner
-            android:id="@+id/currency_spinner"
+        <TextView
+            android:id="@+id/currency_text"
             android:layout_width="wrap_content"
-            android:layout_height="48dp" />
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="USD"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_keyboard_arrow_right"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="@string/save"
-        android:textSize="20sp" />
 
 </LinearLayout>
