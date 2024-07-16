@@ -22,17 +22,13 @@ class BottomStringSelector(
         savedInstanceState: Bundle?
     ): View {
         binding = BottomSheetLayoutBinding.inflate(layoutInflater)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val currency = resources.getStringArray(R.array.currency_array)
         binding.currency.apply {
             currency.forEach {
                 this.addView(addTextView(it))
             }
         }
+        return binding.root
     }
 
     private fun addTextView(currency: String): TextView {
