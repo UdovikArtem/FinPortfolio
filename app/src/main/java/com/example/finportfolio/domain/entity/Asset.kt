@@ -1,4 +1,4 @@
-package com.example.finportfolio.entity
+package com.example.finportfolio.domain.entity
 
 open class Asset(
     open val id: Int,

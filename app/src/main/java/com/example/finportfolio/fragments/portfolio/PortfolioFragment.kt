@@ -1,27 +1,16 @@
 package com.example.finportfolio.fragments.portfolio
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.finportfolio.databinding.FragmentPortfolioBinding
+import com.example.finportfolio.fragments.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class PortfolioFragment : Fragment() {
-    private var _binding: FragmentPortfolioBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
 
-    override fun onCreateView(
+    override fun inflateViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPortfolioBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+        container: ViewGroup?
+    ) = FragmentPortfolioBinding.inflate(inflater, container, false)
 }

@@ -4,40 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.finportfolio.databinding.FragmentMainBinding
+import com.example.finportfolio.fragments.BaseFragment
 
-class MainFragment : Fragment() {
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    override fun onCreateView(
+    override fun inflateViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        container: ViewGroup?
+    ) = FragmentMainBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val actionPortfolio = MainFragmentDirections.actionMainFragmentToPortfolioFragment()
         val actionAsset = MainFragmentDirections.actionMainFragmentToAssetFragment()
+        val actionSetting = MainFragmentDirections.actionMainFragmentToSettingFragment()
 
-        binding.buttonFragmentPortfolio.setOnClickListener {
-            findNavController().navigate(actionPortfolio)
+        binding.apply {
+            buttonFragmentPortfolio.setOnClickListener {
+                findNavController().navigate(actionPortfolio)
+            }
+
+            buttonFragmentAsset.setOnClickListener {
+                findNavController().navigate(actionAsset)
+            }
+
+            buttonSettings.setOnClickListener {
+                findNavController().navigate(actionSetting)
+            }
         }
-
-        binding.buttonFragmentAsset.setOnClickListener {
-            findNavController().navigate(actionAsset)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

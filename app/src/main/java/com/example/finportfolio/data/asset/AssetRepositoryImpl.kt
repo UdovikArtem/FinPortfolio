@@ -1,0 +1,12 @@
+package com.example.finportfolio.data.asset
+
+import com.example.finportfolio.domain.entity.Asset
+import com.example.finportfolio.domain.repository.AssetRepository
+import javax.inject.Inject
+
+class AssetRepositoryImpl @Inject constructor(
+    private val assetDataSource: AssetDataSource
+) : AssetRepository {
+    override fun getAssets(): List<Asset> = assetDataSource.getAssets()
+    override fun getAssetById(id: Int): Asset? = assetDataSource.getAssetById(id)
+}

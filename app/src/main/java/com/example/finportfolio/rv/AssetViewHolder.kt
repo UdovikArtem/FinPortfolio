@@ -2,7 +2,7 @@ package com.example.finportfolio.rv
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finportfolio.databinding.ItemAssetBinding
-import com.example.finportfolio.entity.Asset
+import com.example.finportfolio.domain.entity.Asset
 
 class AssetViewHolder(private val binding: ItemAssetBinding) :
     RecyclerView.ViewHolder(binding.root) {
