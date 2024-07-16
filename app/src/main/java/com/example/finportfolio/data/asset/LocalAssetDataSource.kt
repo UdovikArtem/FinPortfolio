@@ -6,7 +6,7 @@ import com.example.finportfolio.domain.entity.Stock
 import javax.inject.Inject
 
 class LocalAssetDataSource @Inject constructor() : AssetDataSource {
-    private val assets: HashMap<Int, Asset> = HashMap(
+    private val assets: Map<Int, Asset> = HashMap(
         listOf(
             Cash(
                 id = 1,
