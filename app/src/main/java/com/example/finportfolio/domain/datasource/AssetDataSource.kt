@@ -1,4 +1,4 @@
-package com.example.finportfolio.data.asset
+package com.example.finportfolio.domain.datasource
 
 import com.example.finportfolio.domain.entity.Asset
 

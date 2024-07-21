@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.finportfolio.databinding.FragmentSettingBinding
 import com.example.finportfolio.fragments.BaseFragment
-import com.example.finportfolio.fragments.setting.stringSelector.BottomStringSelector
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
+    companion object {
+        private const val KEY_CURRENCY = "currencyKey"
+        private const val CURRENCY_NAME = "currencyName"
+    }
 
     private val viewModel by viewModels<SettingViewModel>()
 
@@ -24,13 +29,19 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             binding.defaultCurrency.setOnClickListener {
-                val bottomStringSelector = BottomStringSelector {
-                    viewModel.setDefaultCurrency(it)
-                }
-                bottomStringSelector.show(parentFragmentManager, "currency")
+                val action =
+                    SettingFragmentDirections.actionSettingFragmentToCurrencyStringSelector()
+                findNavController().navigate(action)
             }
             viewModel.currencyModel.observe(viewLifecycleOwner) {
-                currencyText.text = it
+                currencyTextSelected.text = it
+            }
+        }
+
+        setFragmentResultListener(KEY_CURRENCY) { _, bundle ->
+            val result = bundle.getString(CURRENCY_NAME)
+            if (result != null) {
+                viewModel.setDefaultCurrency(result)
             }
         }
     }

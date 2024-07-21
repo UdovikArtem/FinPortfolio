@@ -24,7 +24,7 @@
             tools:ignore="NestedWeights" />
 
         <TextView
-            android:id="@+id/currency_text"
+            android:id="@+id/currency_text_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
