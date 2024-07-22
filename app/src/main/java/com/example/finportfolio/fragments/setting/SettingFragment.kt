@@ -13,9 +13,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
-    companion object {
-        private const val KEY_CURRENCY = "currencyKey"
-        private const val CURRENCY_NAME = "currencyName"
+    private companion object {
+        const val KEY_CURRENCY = "currencyKey"
+        const val CURRENCY_NAME = "currencyName"
     }
 
     private val viewModel by viewModels<SettingViewModel>()
@@ -27,15 +27,13 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-            binding.defaultCurrency.setOnClickListener {
-                val action =
-                    SettingFragmentDirections.actionSettingFragmentToCurrencyStringSelector()
-                findNavController().navigate(action)
-            }
-            viewModel.currencyModel.observe(viewLifecycleOwner) {
-                currencyTextSelected.text = it
-            }
+        binding.defaultCurrency.setOnClickListener {
+            val action =
+                SettingFragmentDirections.actionSettingFragmentToCurrencyStringSelector()
+            findNavController().navigate(action)
+        }
+        viewModel.currencyModel.observe(viewLifecycleOwner) {
+            binding.currencyTextSelected.text = it
         }
 
         setFragmentResultListener(KEY_CURRENCY) { _, bundle ->

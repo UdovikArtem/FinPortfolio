@@ -14,9 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CurrencyStringSelector : BottomSheetDialogFragment() {
-    companion object {
-        private const val KEY_CURRENCY = "currencyKey"
-        private const val CURRENCY_NAME = "currencyName"
+    private companion object {
+        const val KEY_CURRENCY = "currencyKey"
+        const val CURRENCY_NAME = "currencyName"
     }
 
     private lateinit var binding: BottomSheetFragmentBinding
