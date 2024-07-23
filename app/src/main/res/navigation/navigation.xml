@@ -34,5 +34,14 @@
         android:id="@+id/settingFragment"
         android:name="com.example.finportfolio.fragments.setting.SettingFragment"
         android:label="@string/settings"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_currencyStringSelector"
+            app:destination="@id/currencyStringSelector" />
+    </fragment>
+    <dialog
+        android:id="@+id/currencyStringSelector"
+        android:name="com.example.finportfolio.fragments.setting.stringselector.CurrencyStringSelector"
+        android:label="CurrencyStringSelector"
+        tools:layout="@layout/bottom_sheet_fragment"/>
 </navigation>

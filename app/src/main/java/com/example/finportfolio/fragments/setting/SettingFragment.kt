@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import com.example.finportfolio.R
+import androidx.navigation.fragment.findNavController
 import com.example.finportfolio.databinding.FragmentSettingBinding
 import com.example.finportfolio.fragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
+    private companion object {
+        const val KEY_CURRENCY = "currencyKey"
+        const val CURRENCY_NAME = "currencyName"
+    }
 
     private val viewModel by viewModels<SettingViewModel>()
 
@@ -23,22 +27,19 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val currency = resources.getStringArray(R.array.currency_array)
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            currency
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.apply {
-            currencySpinner.adapter = adapter
-            viewModel.currencyModel.observe(viewLifecycleOwner) {
-                val itemNumber = currency.indexOf(it)
-                currencySpinner.setSelection(itemNumber)
-            }
-            saveButton.setOnClickListener {
-                val selectedCurrency = binding.currencySpinner.selectedItem.toString()
-                viewModel.setDefaultCurrency(selectedCurrency)
+        binding.defaultCurrency.setOnClickListener {
+            val action =
+                SettingFragmentDirections.actionSettingFragmentToCurrencyStringSelector()
+            findNavController().navigate(action)
+        }
+        viewModel.currencyModel.observe(viewLifecycleOwner) {
+            binding.currencyTextSelected.text = it
+        }
+
+        setFragmentResultListener(KEY_CURRENCY) { _, bundle ->
+            val result = bundle.getString(CURRENCY_NAME)
+            if (result != null) {
+                viewModel.setDefaultCurrency(result)
             }
         }
     }

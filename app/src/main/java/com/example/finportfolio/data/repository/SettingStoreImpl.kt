@@ -1,4 +1,4 @@
-package com.example.finportfolio.data.setting
+package com.example.finportfolio.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences

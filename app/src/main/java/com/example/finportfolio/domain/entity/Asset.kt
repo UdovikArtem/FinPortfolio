@@ -8,7 +8,7 @@ open class Asset(
 class Cash(
     override val id: Int,
     override val name: String,
-    val currency: String
+    val currency: Currency
 ) : Asset(id, name)
 
 data class Stock(
