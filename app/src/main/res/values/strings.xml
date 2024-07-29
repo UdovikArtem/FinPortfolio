@@ -10,4 +10,5 @@
     <string name="my_portfolio">My portfolio</string>
     <string name="currency">Currency</string>
     <string name="ticker">Ticker</string>
+    <string name="asset_not_found">Asset wasn\'t found</string>
 </resources>

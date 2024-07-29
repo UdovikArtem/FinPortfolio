@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -37,26 +38,30 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
             it?.let {
                 bind(it)
             } ?: run {
-                Toast.makeText(context, "Asset wasn't found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.asset_not_found), Toast.LENGTH_SHORT)
+                    .show()
                 findNavController().navigateUp()
             }
         }
     }
 
     private fun bind(asset: Asset) {
+        val dataItems = ArrayList<String>(listOf())
+        when (asset) {
+            is Cash -> {
+                dataItems.add("${getString(R.string.currency)}: ${asset.currency.currencyName}")
+            }
+
+            is Stock -> {
+                dataItems.add("${getString(R.string.ticker)}: ${asset.ticker}")
+            }
+        }
         with(binding) {
             name.text = asset.name
-            when (asset) {
-                is Cash -> {
-                    valueType.setText(R.string.currency)
-                    value.text = asset.currency.currencyName
-                }
-
-                is Stock -> {
-                    valueType.setText(R.string.ticker)
-                    value.text = asset.ticker
-                }
+            val adapter = this@AssetDetailsFragment.context?.let {
+                ArrayAdapter(it, android.R.layout.simple_list_item_1, dataItems)
             }
+            dataList.adapter = adapter
         }
     }
 }
