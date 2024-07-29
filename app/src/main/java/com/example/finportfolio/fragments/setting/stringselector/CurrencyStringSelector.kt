@@ -35,6 +35,7 @@ class CurrencyStringSelector : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.currencies.observe(viewLifecycleOwner) {
+            binding.bottomSheetLayout.removeAllViews()
             it.forEach { currency ->
                 val itemBottomSheetBinding = ItemBottomSheetBinding
                     .inflate(LayoutInflater.from(this.context))

@@ -8,11 +8,7 @@
     <string name="portfolio_page">Portfolio page</string>
     <string name="financial_portfolio">Financial page</string>
     <string name="my_portfolio">My portfolio</string>
-    <string-array name="currency_array">
-        <item>USD</item>
-        <item>EUR</item>
-        <item>BLR</item>
-        <item>CNY</item>
-        <item>RUB</item>
-    </string-array>
+    <string name="currency">Currency</string>
+    <string name="ticker">Ticker</string>
+    <string name="asset_not_found">Asset wasn\'t found</string>
 </resources>
