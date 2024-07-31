@@ -25,7 +25,7 @@ class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
         val adapter = PortfolioAdapter()
         binding.portfolioRecycler.adapter = adapter
         viewModel.portfolioModel.observe(viewLifecycleOwner) { portfolioAssets ->
-            adapter.submitItems(portfolioAssets)
+            adapter.submitList(portfolioAssets)
         }
     }
 }

@@ -6,7 +6,6 @@ import com.example.finportfolio.domain.entity.PortfolioAsset
 
 class PortfolioViewHolder(private val binding: ItemPortfolioAssetCardBinding) :
     RecyclerView.ViewHolder(binding.root) {
-
     fun bind(portfolioAsset: PortfolioAsset) {
         binding.apply {
             assetName.text = portfolioAsset.asset.name

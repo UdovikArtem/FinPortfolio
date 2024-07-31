@@ -2,14 +2,12 @@ package com.example.finportfolio.rv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.example.finportfolio.databinding.ItemPortfolioAssetCardBinding
 import com.example.finportfolio.domain.entity.PortfolioAsset
 
-class PortfolioAdapter : RecyclerView.Adapter<PortfolioViewHolder>() {
-
-    private var assets = emptyList<PortfolioAsset>()
+class PortfolioAdapter :
+    ListAdapter<PortfolioAsset, PortfolioViewHolder>(PortfolioDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PortfolioViewHolder {
         return PortfolioViewHolder(
@@ -21,18 +19,7 @@ class PortfolioAdapter : RecyclerView.Adapter<PortfolioViewHolder>() {
         )
     }
 
-    fun submitItems(newItems: List<PortfolioAsset>) {
-        val diffResult = DiffUtil.calculateDiff(
-            PortfolioDiffCallback(assets, newItems)
-        )
-        assets = newItems
-        diffResult.dispatchUpdatesTo(this)
-    }
-
     override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
-        val asset = assets[position]
-        holder.bind(asset)
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount(): Int = assets.size
 }
