@@ -52,7 +52,7 @@ class LocalAssetDataSource @Inject constructor() : AssetDataSource {
             )
         ).associateBy { it.id }
     )
-    override fun getAssets(): List<Asset> = assets.values.toList()
+    override suspend fun getAssets(): List<Asset> = assets.values.toList()
 
-    override fun getAssetById(id: Int): Asset? = assets[id]
+    override suspend fun getAssetById(id: Int): Asset? = assets[id]
 }

@@ -8,6 +8,6 @@ import javax.inject.Inject
 class AssetRepositoryImpl @Inject constructor(
     private val assetDataSource: AssetDataSource
 ) : AssetRepository {
-    override fun getAssets(): List<Asset> = assetDataSource.getAssets()
-    override fun getAssetById(id: Int): Asset? = assetDataSource.getAssetById(id)
+    override suspend fun getAssets(): List<Asset> = assetDataSource.getAssets()
+    override suspend fun getAssetById(id: Int): Asset? = assetDataSource.getAssetById(id)
 }

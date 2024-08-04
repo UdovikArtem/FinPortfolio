@@ -16,11 +16,11 @@ constructor(@ApplicationContext context: Context) : SettingStore {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    override fun setDefaultCurrency(currency: String) {
+    override suspend fun setDefaultCurrency(currency: String) {
         sharedPreferences.edit().putString(KEY_DEFAULT_CURRENCY, currency).apply()
     }
 
-    override fun getDefaultCurrency(): String {
+    override suspend fun getDefaultCurrency(): String {
         return sharedPreferences.getString(KEY_DEFAULT_CURRENCY, "USD") ?: "USD"
     }
 }

@@ -7,5 +7,5 @@ import javax.inject.Inject
 class CurrencyInteractor @Inject constructor(
     private val repository: CurrencyRepository
 ) {
-    fun getCurrencies(): List<Currency> = repository.getCurrencies()
+    suspend fun getCurrencies(): List<Currency> = repository.getCurrencies()
 }

@@ -21,13 +21,13 @@ class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
         )
     )
 
-    override fun getPortfolioAssets() = portfolioAssetsList
+    override suspend fun getPortfolioAssets() = portfolioAssetsList
 
-    override fun addPortfolioAsset(asset: PortfolioAsset) {
+    override suspend fun addPortfolioAsset(asset: PortfolioAsset) {
         portfolioAssetsList.add(asset)
     }
 
-    override fun deletePortfolioAsset(asset: PortfolioAsset) {
+    override suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
         portfolioAssetsList.remove(asset)
     }
 }

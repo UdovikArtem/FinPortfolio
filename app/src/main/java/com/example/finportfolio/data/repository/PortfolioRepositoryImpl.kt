@@ -8,15 +8,15 @@ import javax.inject.Inject
 class PortfolioRepositoryImpl @Inject constructor(
     private val dataSource: PortfolioDataSource
 ) : PortfolioRepository {
-    override fun getPortfolioAssets(): List<PortfolioAsset> {
+    override suspend fun getPortfolioAssets(): List<PortfolioAsset> {
         return dataSource.getPortfolioAssets()
     }
 
-    override fun addPortfolioAsset(asset: PortfolioAsset) {
+    override suspend fun addPortfolioAsset(asset: PortfolioAsset) {
         return dataSource.addPortfolioAsset(asset)
     }
 
-    override fun deletePortfolioAsset(asset: PortfolioAsset) {
+    override suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
         return dataSource.deletePortfolioAsset(asset)
     }
 }

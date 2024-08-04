@@ -7,13 +7,13 @@ import javax.inject.Inject
 class PortfolioInteractor @Inject constructor(
     private val repository: PortfolioRepository
 ) {
-    fun getPortfolioAssets() = repository.getPortfolioAssets()
+    suspend fun getPortfolioAssets() = repository.getPortfolioAssets()
 
-    fun addPortfolioAsset(asset: PortfolioAsset) {
+    suspend fun addPortfolioAsset(asset: PortfolioAsset) {
         return repository.addPortfolioAsset(asset)
     }
 
-    fun deletePortfolioAsset(asset: PortfolioAsset) {
+    suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
         return repository.deletePortfolioAsset(asset)
     }
 }

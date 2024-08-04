@@ -8,5 +8,5 @@ import javax.inject.Inject
 class CurrencyRepositoryImpl @Inject constructor(
     private val currencyDataSource: CurrencyDataSource
 ) : CurrencyRepository {
-    override fun getCurrencies(): List<Currency> = currencyDataSource.getCurrencies()
+    override suspend fun getCurrencies(): List<Currency> = currencyDataSource.getCurrencies()
 }
