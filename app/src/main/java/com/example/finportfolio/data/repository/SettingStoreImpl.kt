@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import com.example.finportfolio.domain.repository.SettingStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class SettingStoreImpl @Inject
 constructor(@ApplicationContext context: Context) : SettingStore {
@@ -17,10 +19,17 @@ constructor(@ApplicationContext context: Context) : SettingStore {
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     override suspend fun setDefaultCurrency(currency: String) {
-        sharedPreferences.edit().putString(KEY_DEFAULT_CURRENCY, currency).apply()
+        withContext(Dispatchers.IO) {
+            sharedPreferences.edit().putString(KEY_DEFAULT_CURRENCY, currency).apply()
+        }
     }
 
     override suspend fun getDefaultCurrency(): String {
-        return sharedPreferences.getString(KEY_DEFAULT_CURRENCY, "USD") ?: "USD"
+        return withContext(Dispatchers.IO) {
+            sharedPreferences.getString(
+                KEY_DEFAULT_CURRENCY,
+                "USD"
+            ) ?: "USD"
+        }
     }
 }

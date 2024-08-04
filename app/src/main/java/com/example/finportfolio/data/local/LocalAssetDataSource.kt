@@ -6,6 +6,8 @@ import com.example.finportfolio.domain.entity.Cash
 import com.example.finportfolio.domain.entity.Currency
 import com.example.finportfolio.domain.entity.Stock
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class LocalAssetDataSource @Inject constructor() : AssetDataSource {
     private val assets: Map<Int, Asset> = HashMap(
@@ -52,7 +54,14 @@ class LocalAssetDataSource @Inject constructor() : AssetDataSource {
             )
         ).associateBy { it.id }
     )
-    override suspend fun getAssets(): List<Asset> = assets.values.toList()
 
-    override suspend fun getAssetById(id: Int): Asset? = assets[id]
+    override suspend fun getAssets(): List<Asset> {
+        return withContext(Dispatchers.IO) { assets.values.toList() }
+    }
+
+    override suspend fun getAssetById(id: Int): Asset? {
+        return withContext(Dispatchers.IO) {
+            assets[id]
+        }
+    }
 }
