@@ -7,11 +7,11 @@ import javax.inject.Inject
 class AssetInteractor @Inject constructor(
     private val repository: AssetRepository
 ) {
-    fun getAssets(): List<Asset> {
+    suspend fun getAssets(): List<Asset> {
         return repository.getAssets()
     }
 
-    fun getAssetById(id: Int): Asset? {
+    suspend fun getAssetById(id: Int): Asset? {
         return repository.getAssetById(id)
     }
 }

@@ -6,6 +6,8 @@ import com.example.finportfolio.domain.entity.Currency
 import com.example.finportfolio.domain.entity.PortfolioAsset
 import java.time.LocalDate
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
     private val portfolioAssetsList = mutableListOf<PortfolioAsset>(
@@ -21,13 +23,19 @@ class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
         )
     )
 
-    override fun getPortfolioAssets() = portfolioAssetsList
-
-    override fun addPortfolioAsset(asset: PortfolioAsset) {
-        portfolioAssetsList.add(asset)
+    override suspend fun getPortfolioAssets(): List<PortfolioAsset> {
+        return withContext(Dispatchers.IO) { portfolioAssetsList }
     }
 
-    override fun deletePortfolioAsset(asset: PortfolioAsset) {
-        portfolioAssetsList.remove(asset)
+    override suspend fun addPortfolioAsset(asset: PortfolioAsset) {
+        withContext(Dispatchers.IO) {
+            portfolioAssetsList.add(asset)
+        }
+    }
+
+    override suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
+        withContext(Dispatchers.IO) {
+            portfolioAssetsList.remove(asset)
+        }
     }
 }
