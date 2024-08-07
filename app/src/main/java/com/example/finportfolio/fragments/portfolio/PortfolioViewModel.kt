@@ -39,7 +39,7 @@ class PortfolioViewModel @Inject constructor(
     fun restorePortfolioAsset() {
         viewModelScope.launch {
             deleteJob?.cancel()
-            _portfolioToDeleteModel.value?.clear()
+            _portfolioToDeleteModel.value?.removeLast()
         }
     }
 
