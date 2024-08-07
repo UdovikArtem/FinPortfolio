@@ -47,4 +47,10 @@ class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
             portfolioAssetsList.remove(asset)
         }
     }
+
+    override suspend fun deleteListOfPortfolioAsset(assets: List<PortfolioAsset>) {
+        withContext(Dispatchers.IO) {
+            portfolioAssetsList.removeAll(assets)
+        }
+    }
 }

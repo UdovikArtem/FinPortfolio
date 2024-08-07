@@ -20,13 +20,16 @@ class PortfolioViewModel @Inject constructor(
     private var deleteJob: Job? = null
     private val _portfolioModel = MutableLiveData<List<PortfolioAsset>>()
     val portfolioModel: LiveData<List<PortfolioAsset>> = _portfolioModel
+    private val _portfolioToDeleteModel = MutableLiveData<MutableList<PortfolioAsset>>()
 
     init {
         loadPortfolioAsset()
+        _portfolioToDeleteModel.value = mutableListOf()
     }
 
     fun deletePortfolioAsset(asset: PortfolioAsset) {
         deleteJob = viewModelScope.launch {
+            _portfolioToDeleteModel.value?.add(asset)
             delay(4000L)
             portfolioInteractor.deletePortfolioAsset(asset)
             loadPortfolioAsset()
@@ -36,12 +39,21 @@ class PortfolioViewModel @Inject constructor(
     fun restorePortfolioAsset() {
         viewModelScope.launch {
             deleteJob?.cancel()
+            _portfolioToDeleteModel.value?.clear()
         }
     }
 
     private fun loadPortfolioAsset() {
         viewModelScope.launch {
             _portfolioModel.value = portfolioInteractor.getPortfolioAssets()
+        }
+    }
+
+    fun deletePortfolioAssetOnDestroy() {
+        viewModelScope.launch {
+            if (_portfolioToDeleteModel.value?.isEmpty() == false) {
+                portfolioInteractor.deleteListOfPortfolioAsset(_portfolioToDeleteModel.value!!)
+            }
         }
     }
 }

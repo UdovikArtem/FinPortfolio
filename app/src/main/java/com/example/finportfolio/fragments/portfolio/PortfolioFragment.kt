@@ -70,6 +70,7 @@ class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.deletePortfolioAssetOnDestroy()
         snackbar?.dismiss()
     }
 }

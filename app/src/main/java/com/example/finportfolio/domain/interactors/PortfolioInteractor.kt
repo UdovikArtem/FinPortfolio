@@ -16,4 +16,8 @@ class PortfolioInteractor @Inject constructor(
     suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
         return repository.deletePortfolioAsset(asset)
     }
+
+    suspend fun deleteListOfPortfolioAsset(assets: List<PortfolioAsset>) {
+        return repository.deleteListOfPortfolioAsset(assets)
+    }
 }
