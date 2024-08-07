@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
+    private var id = 2
     private val portfolioAssetsList = mutableListOf<PortfolioAsset>(
         PortfolioAsset(
             id = 1,
@@ -29,7 +30,15 @@ class LocalPortfolioDataSource @Inject constructor() : PortfolioDataSource {
 
     override suspend fun addPortfolioAsset(asset: PortfolioAsset) {
         withContext(Dispatchers.IO) {
-            portfolioAssetsList.add(asset)
+            portfolioAssetsList.add(
+                PortfolioAsset(
+                    id,
+                    asset.asset,
+                    asset.value,
+                    asset.purchaseDate
+                )
+            )
+            id++
         }
     }
 

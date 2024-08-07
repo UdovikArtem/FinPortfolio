@@ -22,4 +22,16 @@ class PortfolioAdapter :
     override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+    fun removeItem(position: Int) {
+        val currentList = currentList.toMutableList()
+        currentList.removeAt(position)
+        submitList(currentList)
+    }
+
+    fun restoreItem(item: PortfolioAsset, position: Int) {
+        val currentList = currentList.toMutableList()
+        currentList.add(position, item)
+        submitList(currentList)
+    }
 }

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.finportfolio.R
 import com.example.finportfolio.databinding.FragmentAssetDetailsBinding
+import com.example.finportfolio.databinding.ValueAlertDialogBinding
 import com.example.finportfolio.domain.entity.Asset
 import com.example.finportfolio.domain.entity.Cash
 import com.example.finportfolio.domain.entity.Stock
@@ -42,6 +44,11 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
                 findNavController().navigateUp()
             }
         }
+
+        binding.addButton.setOnClickListener {
+            val builder = makeAlertDialog()
+            builder?.show()
+        }
     }
 
     private fun bind(asset: Asset) {
@@ -59,5 +66,22 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
                 }
             }
         }
+    }
+
+    private fun makeAlertDialog(): AlertDialog.Builder? {
+        val builder = this.context?.let { context -> AlertDialog.Builder(context) }
+        val valueAlertDialogBinding =
+            ValueAlertDialogBinding.inflate(LayoutInflater.from(this.context))
+        val editValue = valueAlertDialogBinding.editValue
+        builder?.let {
+            with(it) {
+                setView(valueAlertDialogBinding.root)
+                setTitle("Value").setCancelable(true)
+                setPositiveButton("Enter") { _, _ ->
+                    viewModel.addAssetToPortfolio(editValue.text.toString().toInt())
+                }
+            }
+        }
+        return builder
     }
 }

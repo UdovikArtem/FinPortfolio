@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".fragments.assetdetails.AssetDetailsFragment">
 
-
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -39,5 +38,18 @@
             tools:text="value" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/add_to_portfolio"
+        android:textSize="20sp" />
 
 </LinearLayout>
