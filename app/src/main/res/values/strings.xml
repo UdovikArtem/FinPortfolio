@@ -17,4 +17,5 @@
     <string name="item_was_removed">"Item was removed from the list."</string>
     <string name="undo">UNDO</string>
     <string name="enter">Enter</string>
+    <string name="not_write_value">The value was not written</string>
 </resources>
