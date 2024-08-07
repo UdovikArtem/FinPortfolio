@@ -76,8 +76,8 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
         builder?.let {
             with(it) {
                 setView(valueAlertDialogBinding.root)
-                setTitle("Value").setCancelable(true)
-                setPositiveButton("Enter") { _, _ ->
+                setTitle(R.string.value).setCancelable(true)
+                setPositiveButton(R.string.enter) { _, _ ->
                     viewModel.addAssetToPortfolio(editValue.text.toString().toInt())
                 }
             }

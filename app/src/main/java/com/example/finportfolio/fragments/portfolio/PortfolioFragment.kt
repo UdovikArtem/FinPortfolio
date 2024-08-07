@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finportfolio.R
 import com.example.finportfolio.databinding.FragmentPortfolioBinding
 import com.example.finportfolio.fragments.BaseFragment
 import com.example.finportfolio.rv.PortfolioAdapter
@@ -19,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
 
     private val viewModel by viewModels<PortfolioViewModel>()
+    private var snackbar: Snackbar? = null
 
     override fun inflateViewBinding(
         inflater: LayoutInflater,
@@ -45,24 +47,29 @@ class PortfolioFragment : BaseFragment<FragmentPortfolioBinding>() {
                     viewModel.deletePortfolioAsset(item)
                     adapter.removeItem(position)
 
-                    val snackbar = Snackbar
+                    snackbar = Snackbar
                         .make(
                             binding.root,
-                            "Item was removed from the list.",
+                            R.string.item_was_removed,
                             Snackbar.LENGTH_LONG
                         )
-                    snackbar.setAction("UNDO") {
+                    snackbar!!.setAction(R.string.undo) {
                         viewModel.restorePortfolioAsset()
                         adapter.restoreItem(item, position)
                         binding.portfolioRecycler.scrollToPosition(position)
                     }
 
-                    snackbar.setActionTextColor(Color.RED)
-                    snackbar.show()
+                    snackbar!!.setActionTextColor(Color.RED)
+                    snackbar!!.show()
                 }
             }
 
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(binding.portfolioRecycler)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        snackbar?.dismiss()
     }
 }
