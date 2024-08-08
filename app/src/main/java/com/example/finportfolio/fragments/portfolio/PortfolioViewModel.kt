@@ -32,7 +32,6 @@ class PortfolioViewModel @Inject constructor(
             _portfolioToDeleteModel.value?.add(asset)
             delay(4000L)
             portfolioInteractor.deletePortfolioAsset(asset)
-            loadPortfolioAsset()
         }
     }
 
