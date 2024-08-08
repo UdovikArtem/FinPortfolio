@@ -18,7 +18,6 @@ import com.example.finportfolio.dpToPx
 abstract class SwipeDeleteCallback internal constructor(private val mContext: Context?) :
     ItemTouchHelper.Callback() {
     private val mClearPaint = Paint()
-    private var mBackground: ShapeDrawable
     private val backgroundColor = mContext?.let { ContextCompat.getColor(it, R.color.red) }
     private val deleteDrawable: Drawable?
     private val intrinsicWidth: Int
@@ -30,22 +29,6 @@ abstract class SwipeDeleteCallback internal constructor(private val mContext: Co
             mContext?.let { ContextCompat.getDrawable(it, android.R.drawable.ic_menu_delete) }
         intrinsicWidth = deleteDrawable!!.intrinsicWidth
         intrinsicHeight = deleteDrawable.intrinsicHeight
-
-        val radii = mContext?.let {
-            floatArrayOf(
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it),
-                2f.dpToPx(it)
-            )
-        }
-        val roundRectShape = RoundRectShape(radii, null, null)
-
-        mBackground = ShapeDrawable(roundRectShape)
     }
 
     override fun getMovementFlags(
@@ -106,7 +89,7 @@ abstract class SwipeDeleteCallback internal constructor(private val mContext: Co
             )
         }
 
-        mBackground = ShapeDrawable(RoundRectShape(radii, null, null))
+        val mBackground = ShapeDrawable(RoundRectShape(radii, null, null))
         mBackground.paint.color = backgroundColor ?: Color.RED
 
         mContext?.let {

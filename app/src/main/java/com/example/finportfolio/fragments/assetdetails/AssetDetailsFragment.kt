@@ -48,7 +48,7 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
 
         binding.addButton.setOnClickListener {
             val builder = makeAlertDialog()
-            builder?.show()
+            builder.show()
         }
     }
 
@@ -69,25 +69,23 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
         }
     }
 
-    private fun makeAlertDialog(): AlertDialog.Builder? {
-        val builder = this.context?.let { context -> AlertDialog.Builder(context) }
+    private fun makeAlertDialog(): AlertDialog.Builder {
+        val builder = requireContext().let { context -> AlertDialog.Builder(context) }
         val valueAlertDialogBinding =
             ValueAlertDialogBinding.inflate(LayoutInflater.from(this.context))
         val editValue = valueAlertDialogBinding.editValue
-        builder?.let {
-            with(it) {
-                setView(valueAlertDialogBinding.root)
-                setTitle(R.string.value).setCancelable(true)
-                setPositiveButton(R.string.enter) { _, _ ->
-                    try {
-                        viewModel.addAssetToPortfolio(editValue.text.toString().toInt())
-                    } catch (e: NumberFormatException) {
-                        Toast.makeText(
-                            context,
-                            getString(R.string.not_write_value),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+        with(builder) {
+            setView(valueAlertDialogBinding.root)
+            setTitle(R.string.value).setCancelable(true)
+            setPositiveButton(R.string.enter) { _, _ ->
+                try {
+                    viewModel.addAssetToPortfolio(editValue.text.toString().toInt())
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.not_write_value),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
