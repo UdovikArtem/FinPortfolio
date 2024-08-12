@@ -11,4 +11,11 @@
     <string name="currency">Currency</string>
     <string name="ticker">Ticker</string>
     <string name="asset_not_found">Asset wasn\'t found</string>
+    <string name="add_to_portfolio">Add to portfolio</string>
+    <string name="value">Value</string>
+    <string name="enter_a_value">Enter a value:</string>
+    <string name="item_was_removed">"Item was removed from the list."</string>
+    <string name="undo">UNDO</string>
+    <string name="enter">Enter</string>
+    <string name="not_write_value">The value was not written</string>
 </resources>

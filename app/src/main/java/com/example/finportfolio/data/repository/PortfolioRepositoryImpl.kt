@@ -27,4 +27,10 @@ class PortfolioRepositoryImpl @Inject constructor(
             dataSource.deletePortfolioAsset(asset)
         }
     }
+
+    override suspend fun deleteListOfPortfolioAsset(assets: List<PortfolioAsset>) {
+        withContext(Dispatchers.IO) {
+            dataSource.deleteListOfPortfolioAsset(assets)
+        }
+    }
 }
