@@ -16,14 +16,14 @@ data class AssetDbEntity(
     @ColumnInfo(name = "type") val type: String,
     @ColumnInfo(name = "currency") val currency: String? = null,
     @ColumnInfo(name = "ticker") val ticker: String? = null
-) {
-    fun toAsset(): Asset {
-        val asset: Asset = when (this.type) {
-            "Cash" -> Cash(id, name, Currency.valueOf(currency!!))
-            "Stock" -> Stock(id, name, ticker!!)
-            else -> Asset(id, name)
-        }
+)
 
-        return asset
+fun AssetDbEntity.toDomain(): Asset {
+    val asset: Asset = when (this.type) {
+        "Cash" -> Cash(id, name, Currency.valueOf(currency!!))
+        "Stock" -> Stock(id, name, ticker!!)
+        else -> Asset(id, name)
     }
+
+    return asset
 }

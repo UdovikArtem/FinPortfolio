@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-class SettingStoreImpl @Inject constructor(@ApplicationContext private val context: Context) :
-    SettingStore {
+class SettingStoreImpl
+@Inject constructor(
+    @ApplicationContext private val context: Context
+) : SettingStore {
 
     companion object {
         private const val PREFS_NAME = "portfolio_settings"

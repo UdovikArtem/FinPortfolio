@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.finportfolio.domain.entity.PortfolioAsset
 
 @Entity(
     tableName = "portfolio_assets",
@@ -24,4 +25,15 @@ data class PortfolioAssetDbEntity(
     val value: Int,
     @ColumnInfo(name = "purchase_date")
     val purchaseDate: String
-)
+) {
+    companion object {
+        fun fromDomain(domain: PortfolioAsset): PortfolioAssetDbEntity {
+            return PortfolioAssetDbEntity(
+                id = domain.id,
+                assetId = domain.asset.id,
+                value = domain.value,
+                purchaseDate = domain.purchaseDate.toString()
+            )
+        }
+    }
+}

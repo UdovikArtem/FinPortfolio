@@ -1,6 +1,7 @@
 package com.example.finportfolio.data.repository
 
 import com.example.finportfolio.data.db.dao.PortfolioAssetDao
+import com.example.finportfolio.data.db.entity.PortfolioAssetDbEntity
 import com.example.finportfolio.domain.entity.PortfolioAsset
 import com.example.finportfolio.domain.repository.PortfolioRepository
 import javax.inject.Inject
@@ -18,13 +19,13 @@ class PortfolioRepositoryImpl @Inject constructor(
 
     override suspend fun addPortfolioAsset(asset: PortfolioAsset) {
         return withContext(Dispatchers.IO) {
-            portfolioAssetDao.addPortfolioAsset(asset.toPortfolioAssetDbEntity())
+            portfolioAssetDao.addPortfolioAsset(PortfolioAssetDbEntity.fromDomain(asset))
         }
     }
 
     override suspend fun deletePortfolioAsset(asset: PortfolioAsset) {
         return withContext(Dispatchers.IO) {
-            portfolioAssetDao.deletePortfolioAsset(asset.toPortfolioAssetDbEntity())
+            portfolioAssetDao.deletePortfolioAsset(PortfolioAssetDbEntity.fromDomain(asset))
         }
     }
 
@@ -32,7 +33,7 @@ class PortfolioRepositoryImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             portfolioAssetDao.deleteListOfPortfolioAsset(
                 assets.map {
-                    it.toPortfolioAssetDbEntity()
+                    PortfolioAssetDbEntity.fromDomain(it)
                 }
             )
         }
