@@ -3,6 +3,7 @@ package com.example.finportfolio.data.db
 import android.content.Context
 import androidx.room.Room
 import com.example.finportfolio.data.db.dao.AssetDao
+import com.example.finportfolio.data.db.dao.CurrencyRateDao
 import com.example.finportfolio.data.db.dao.PortfolioAssetDao
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,11 @@ class DatabaseModule {
     @Provides
     fun providePortfolioAssetDao(appDatabase: AppDatabase): PortfolioAssetDao {
         return appDatabase.gePortfolioAssetDao()
+    }
+
+    @Provides
+    fun provideCurrencyRateDao(appDatabase: AppDatabase): CurrencyRateDao {
+        return appDatabase.getCurrencyRateDao()
     }
 
     @Provides
