@@ -18,4 +18,6 @@
     <string name="undo">UNDO</string>
     <string name="enter">Enter</string>
     <string name="not_write_value">The value was not written</string>
+    <string name="not_relevant_rate">"You don't have relevant rate of currency. Connect to the Internet"</string>
+    <string name="using_byn">"You don't have connection. Using BYN currency"</string>
 </resources>
