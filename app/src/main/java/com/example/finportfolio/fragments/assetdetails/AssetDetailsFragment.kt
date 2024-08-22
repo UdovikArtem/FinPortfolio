@@ -16,6 +16,7 @@ import com.example.finportfolio.domain.entity.Asset
 import com.example.finportfolio.domain.entity.Cash
 import com.example.finportfolio.domain.entity.Stock
 import com.example.finportfolio.fragments.BaseFragment
+import com.example.finportfolio.roundToTwoDecimalPlaces
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.NumberFormatException
 
@@ -79,7 +80,9 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
             setTitle(R.string.value).setCancelable(true)
             setPositiveButton(R.string.enter) { _, _ ->
                 try {
-                    viewModel.addAssetToPortfolio(editValue.text.toString().toInt())
+                    viewModel.addAssetToPortfolio(
+                        editValue.text.toString().toFloat().roundToTwoDecimalPlaces()
+                    )
                 } catch (e: NumberFormatException) {
                     Toast.makeText(
                         context,

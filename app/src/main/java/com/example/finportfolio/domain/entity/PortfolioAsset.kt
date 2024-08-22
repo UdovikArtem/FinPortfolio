@@ -5,6 +5,6 @@ import java.time.LocalDate
 data class PortfolioAsset(
     val id: Int,
     val asset: Asset,
-    val value: Int,
+    var value: Float,
     val purchaseDate: LocalDate
 )

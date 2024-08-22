@@ -15,7 +15,7 @@ data class PortfolioAssetTuple(
     @ColumnInfo(name = "type") val type: String,
     @ColumnInfo(name = "currency") val currency: String? = null,
     @ColumnInfo(name = "ticker") val ticker: String? = null,
-    @ColumnInfo(name = "value") val value: Int,
+    @ColumnInfo(name = "value") val value: Float,
     @ColumnInfo(name = "purchase_date") val purchaseDate: String
 ) {
     fun toPortfolioAsset(): PortfolioAsset {

@@ -1,19 +1,19 @@
 package com.example.finportfolio.data.repository
 
-import androidx.datastore.core.IOException
 import com.example.finportfolio.data.db.entity.toDomain
-import com.example.finportfolio.data.local.LocalCurrencyRateDataSource
 import com.example.finportfolio.data.remote.RemoteCurrencyRateDataSource
 import com.example.finportfolio.data.remote.api.toDbEntity
+import com.example.finportfolio.domain.datasource.CurrencyRateDataSource
 import com.example.finportfolio.domain.entity.CurrencyRate
 import com.example.finportfolio.domain.repository.CurrencyRateRepository
 import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class CurrencyRateRepositoryImpl @Inject constructor(
-    private val localCurrencyRateDataSource: LocalCurrencyRateDataSource,
+    private val localCurrencyRateDataSource: CurrencyRateDataSource,
     private val remoteCurrencyRateDataSource: RemoteCurrencyRateDataSource
 ) : CurrencyRateRepository {
 
@@ -34,15 +34,17 @@ class CurrencyRateRepositoryImpl @Inject constructor(
                 } else {
                     Result.success(getRemoteCurrencyRate(code))
                 }
-            } catch (e: IOException) {
+            } catch (e: HttpException) {
                 Result.failure(e)
             }
         }
     }
 
     private suspend fun getRemoteCurrencyRate(code: String): CurrencyRate {
-        val currencyRate = remoteCurrencyRateDataSource.getCurrencyRate(code).toDbEntity()
-        localCurrencyRateDataSource.addOrUpdateCurrencyRate(currencyRate)
-        return currencyRate.toDomain()
+        return withContext(Dispatchers.IO) {
+            val currencyRate = remoteCurrencyRateDataSource.getCurrencyRate(code).toDbEntity()
+            localCurrencyRateDataSource.addOrUpdateCurrencyRate(currencyRate)
+            currencyRate.toDomain()
+        }
     }
 }

@@ -16,6 +16,6 @@
         android:layout_height="48dp"
         android:layout_marginHorizontal="10dp"
         android:hint="@string/value"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
 </LinearLayout>

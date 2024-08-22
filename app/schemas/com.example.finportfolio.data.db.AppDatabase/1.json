@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ad18b874d56a13fe6cee069e25aab491",
+    "identityHash": "520078a8deec48db61d00e31a528da55",
     "entities": [
       {
         "tableName": "portfolio_assets",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `asset_id` INTEGER NOT NULL, `value` INTEGER NOT NULL, `purchase_date` TEXT NOT NULL, FOREIGN KEY(`asset_id`) REFERENCES `assets`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `asset_id` INTEGER NOT NULL, `value` REAL NOT NULL, `purchase_date` TEXT NOT NULL, FOREIGN KEY(`asset_id`) REFERENCES `assets`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,7 +23,7 @@
           {
             "fieldPath": "value",
             "columnName": "value",
-            "affinity": "INTEGER",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -146,7 +146,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ad18b874d56a13fe6cee069e25aab491')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '520078a8deec48db61d00e31a528da55')"
     ]
   }
 }

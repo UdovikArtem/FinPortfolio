@@ -22,7 +22,7 @@ data class PortfolioAssetDbEntity(
     @ColumnInfo(name = "asset_id")
     val assetId: Int,
     @ColumnInfo(name = "value")
-    val value: Int,
+    val value: Float,
     @ColumnInfo(name = "purchase_date")
     val purchaseDate: String
 ) {
