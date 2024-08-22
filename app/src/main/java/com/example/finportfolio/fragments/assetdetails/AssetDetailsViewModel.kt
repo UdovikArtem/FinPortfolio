@@ -27,7 +27,7 @@ class AssetDetailsViewModel @Inject constructor(
         }
     }
 
-    fun addAssetToPortfolio(value: Int) {
+    fun addAssetToPortfolio(value: Float) {
         viewModelScope.launch {
             _assetModel.value?.let {
                 PortfolioAsset(
