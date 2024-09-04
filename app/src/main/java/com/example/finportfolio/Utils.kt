@@ -19,3 +19,7 @@ fun Int.dpToPx(context: Context): Int {
         context.resources.displayMetrics
     ).toInt()
 }
+
+fun Float.roundToTwoDecimalPlaces(): Float {
+    return String.format("%.2f", this).toFloat()
+}

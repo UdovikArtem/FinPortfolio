@@ -47,6 +47,12 @@ class AssetDetailsFragment : BaseFragment<FragmentAssetDetailsBinding>() {
             }
         }
 
+        viewModel.toastMessage.observe(viewLifecycleOwner) {
+            if (it != null) {
+                Toast.makeText(context, getString(it), Toast.LENGTH_LONG).show()
+            }
+        }
+
         binding.addButton.setOnClickListener {
             val builder = makeAlertDialog()
             builder.show()

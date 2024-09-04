@@ -1,5 +1,6 @@
 package com.example.finportfolio.data.repository
 
+import androidx.datastore.core.IOException
 import com.example.finportfolio.data.db.entity.toDomain
 import com.example.finportfolio.data.remote.RemoteCurrencyRateDataSource
 import com.example.finportfolio.data.remote.api.toDbEntity
@@ -24,8 +25,8 @@ class CurrencyRateRepositoryImpl @Inject constructor(
 
     override suspend fun getCurrencyRate(code: String): Result<CurrencyRate> {
         return withContext(Dispatchers.IO) {
+            val currencyRate = localCurrencyRateDataSource.getCurrencyRate(code)
             try {
-                val currencyRate = localCurrencyRateDataSource.getCurrencyRate(code)
                 if (currencyRate != null && LocalDate.parse(
                         currencyRate.data.subSequence(DATE_START, DATE_END)
                     ).isEqual(LocalDate.now())
@@ -35,7 +36,9 @@ class CurrencyRateRepositoryImpl @Inject constructor(
                     Result.success(getRemoteCurrencyRate(code))
                 }
             } catch (e: HttpException) {
-                Result.failure(e)
+                getExceptionResult(currencyRate, e)
+            } catch (e: IOException) {
+                getExceptionResult(currencyRate, e)
             }
         }
     }
@@ -46,5 +49,13 @@ class CurrencyRateRepositoryImpl @Inject constructor(
             localCurrencyRateDataSource.addOrUpdateCurrencyRate(currencyRate)
             currencyRate.toDomain()
         }
+    }
+
+    private fun getExceptionResult(currencyRate: CurrencyRate?, e: Exception):
+        Result<CurrencyRate> {
+        if (currencyRate != null) {
+            return Result.success(currencyRate)
+        }
+        return Result.failure(e)
     }
 }
