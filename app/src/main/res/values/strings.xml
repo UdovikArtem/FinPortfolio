@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">FinPortfolio</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="save">Save</string>
+    <string name="default_currency">Default Currency</string>
+    <string name="assets_page">Asset page</string>
+    <string name="portfolio_page">Portfolio page</string>
+    <string name="financial_portfolio">Financial page</string>
+    <string name="my_portfolio">My portfolio</string>
+    <string name="currency">Currency</string>
+    <string name="ticker">Ticker</string>
+    <string name="asset_not_found">Asset wasn\'t found</string>
+    <string name="add_to_portfolio">Add to portfolio</string>
+    <string name="value">Value</string>
+    <string name="enter_a_value">Enter a value:</string>
+    <string name="item_was_removed">"Item was removed from the list."</string>
+    <string name="undo">UNDO</string>
+    <string name="enter">Enter</string>
+    <string name="not_write_value">The value was not written</string>
+    <string name="not_relevant_rate">"You don't have relevant rate of currency. Connect to the Internet"</string>
+    <string name="using_byn">"You don't have connection. Using BYN currency"</string>
 </resources>

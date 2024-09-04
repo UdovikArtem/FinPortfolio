@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <dialog
+        android:id="@+id/currencyStringSelector"
+        android:name="com.example.finportfolio.fragments.setting.stringselector.CurrencyStringSelector"
+        android:label="CurrencyStringSelector"
+        tools:layout="@layout/bottom_sheet_fragment" />
+    <fragment
+        android:id="@+id/portfolioFragment"
+        android:name="com.example.finportfolio.fragments.portfolio.PortfolioFragment"
+        android:label="@string/portfolio_page"
+        tools:layout="@layout/fragment_portfolio" />
+    <fragment
+        android:id="@+id/assetFragment"
+        android:name="com.example.finportfolio.fragments.assets.AssetFragment"
+        android:label="@string/assets_page"
+        tools:layout="@layout/fragment_asset">
+        <action
+            android:id="@+id/action_assetFragment_to_assetDetailsFragment"
+            app:destination="@id/assetDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.finportfolio.fragments.setting.SettingFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_currencyStringSelector"
+            app:destination="@id/currencyStringSelector" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.finportfolio.fragments.main.MainFragment"
+        android:label="@string/financial_portfolio"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_portfolioFragment"
+            app:destination="@id/portfolioFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_assetFragment"
+            app:destination="@id/assetFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/assetDetailsFragment"
+        android:name="com.example.finportfolio.fragments.assetdetails.AssetDetailsFragment"
+        android:label="Asset Details"
+        tools:layout="@layout/fragment_asset_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
